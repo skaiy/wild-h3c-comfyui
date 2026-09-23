@@ -1,7 +1,7 @@
 [project]
 name = "wild-h3c"
 description = "MiniMax H3 video generation on Apple Silicon, powered by the h3.c Metal engine."
-version = "0.1.1"
+version = "0.1.2"
 license = { file = "LICENSE" }
 dependencies = []
 classifiers = [
@@ -15,4 +15,5 @@ Repository = "https://github.com/skaiy/wild-h3c-comfyui"
 [tool.comfy]
 PublisherId = "kaiy-ai"
 DisplayName = "Wild H3C — MiniMax H3 for Apple Silicon"
-Icon = ""
+Icon = "https://raw.githubusercontent.com/skaiy/wild-h3c-comfyui/main/assets/icon.png"
+Banner = "https://raw.githubusercontent.com/skaiy/wild-h3c-comfyui/main/assets/banner.png"
