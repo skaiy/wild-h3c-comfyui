@@ -13,8 +13,6 @@ classifiers = [
 Repository = "https://github.com/skaiy/wild-h3c-comfyui"
 
 [tool.comfy]
-# TODO: replace with your PublisherId from registry.comfy.org (shown after @ on
-# your profile page). PublisherId is globally unique and cannot be changed later.
-PublisherId = "YOUR_PUBLISHER_ID"
+PublisherId = "kaiy-ai"
 DisplayName = "Wild H3C — MiniMax H3 for Apple Silicon"
 Icon = ""
