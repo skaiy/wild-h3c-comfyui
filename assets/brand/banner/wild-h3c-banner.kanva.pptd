@@ -6,13 +6,13 @@ customFonts:
     src: "https://fonts.googleapis.com/css2?family=Archivo+Black"
 theme:
   colors:
-    bg: "#0E0F11"
+    bg: "#0D1426"
     paper: "#F4F1E8"
     amber: "#F2A33C"
-    dim: "#2A2C30"
-    frame: "#17181B"
-    frameedge: "#2E3136"
-    mute: "#8A8F98"
-    sub: "#B9BDC4"
+    dim: "#2A3040"
+    frame: "#161D31"
+    frameedge: "#303A55"
+    mute: "#7C8698"
+    sub: "#B4BCC9"
 pages:
   - pages/1_banner.page
