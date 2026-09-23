@@ -1,0 +1,94 @@
+pageType: cover
+background:
+  type: solid
+  color: "$bg"
+elements:
+  - elementId: wordmark
+    elementType: text
+    bounds: [80, 150, 660, 120]
+    content:
+      fontSize: 92
+      fontFamily: Archivo Black
+      color: "$paper"
+      wrap: false
+      align: [left, middle]
+      text: |
+        <p>Wild <span style="color:$amber">H3C</span></p>
+
+  - elementId: tagline
+    elementType: text
+    bounds: [82, 292, 620, 74]
+    content:
+      fontSize: 27
+      color: "$sub"
+      lineHeight: 1.35
+      align: [left, top]
+      text: |
+        <p>MiniMax H3 video generation,</p>
+        <p>native on Apple Silicon.</p>
+
+  - elementId: facts
+    elementType: text
+    bounds: [82, 408, 620, 28]
+    content:
+      fontSize: 18
+      color: "$mute"
+      letterSpacing: 1
+      wrap: false
+      align: [left, middle]
+      text: |
+        <p>Metal-native<span style="color:$amber"> · </span>Zero API cost<span style="color:$amber"> · </span>Offline &amp; private</p>
+
+  - elementId: frame-3
+    elementType: shape
+    bounds: [1045, 185, 150, 210]
+    shapeName: roundRect
+    adjustments: [8000]
+    rotation: 5
+    fill: {type: solid, color: "$frame"}
+    border: {style: solid, width: 2, color: "$frameedge"}
+
+  - elementId: frame-2
+    elementType: shape
+    bounds: [912, 168, 150, 210]
+    shapeName: roundRect
+    adjustments: [8000]
+    rotation: -2
+    fill: {type: solid, color: "$frame"}
+    border: {style: solid, width: 2, color: "$frameedge"}
+
+  - elementId: frame-1
+    elementType: shape
+    bounds: [780, 152, 150, 210]
+    shapeName: roundRect
+    adjustments: [8000]
+    rotation: -7
+    fill:
+      type: gradient
+      gradientType: linear
+      angle: 135
+      stops:
+        - {position: 0, color: "#F2A33C"}
+        - {position: 1, color: "#C97B1E"}
+
+  - elementId: play-tri
+    elementType: shape
+    bounds: [831, 227, 62, 62]
+    shapeName: custom
+    viewBox: [100, 100]
+    path: "M20,8 L92,50 L20,92 Z"
+    rotation: -7
+    fill: {type: solid, color: "#0E0F11"}
+
+  - elementId: timeline-rule
+    elementType: shape
+    bounds: [770, 448, 430, 2]
+    shapeName: rect
+    fill: {type: solid, color: "$dim"}
+
+  - elementId: timeline-playhead
+    elementType: shape
+    bounds: [846, 442, 14, 14]
+    shapeName: rect
+    rotation: 45
+    fill: {type: solid, color: "$amber"}
