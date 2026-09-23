@@ -46,30 +46,48 @@ elements:
       text: |
         <p>Metal-native<span style="color:$amber"> · </span>Zero API cost<span style="color:$amber"> · </span>Offline &amp; private</p>
 
-  - elementId: frame-3
+  - elementId: mbp-dim-screen
     elementType: shape
-    bounds: [988, 196, 140, 196]
+    bounds: [884, 188, 176, 116]
     shapeName: roundRect
     adjustments: [8000]
-    rotation: 4
     fill: {type: solid, color: "$frame"}
     border: {style: solid, width: 2, color: "$frameedge"}
 
-  - elementId: frame-2
+  - elementId: mbp-dim-play
     elementType: shape
-    bounds: [862, 180, 140, 196]
+    bounds: [946, 224, 44, 44]
+    shapeName: custom
+    viewBox: [100, 100]
+    path: "M20,8 L92,50 L20,92 Z"
+    fill: {type: solid, color: "$frameedge"}
+
+  - elementId: mbp-dim-base
+    elementType: shape
+    bounds: [872, 308, 200, 12]
     shapeName: roundRect
-    adjustments: [8000]
-    rotation: -2
+    adjustments: [50000]
+    fill: {type: solid, color: "#20273A"}
+
+  - elementId: macmini
+    elementType: shape
+    bounds: [1080, 262, 132, 40]
+    shapeName: roundRect
+    adjustments: [24000]
     fill: {type: solid, color: "$frame"}
     border: {style: solid, width: 2, color: "$frameedge"}
 
-  - elementId: frame-1
+  - elementId: macmini-led
     elementType: shape
-    bounds: [730, 166, 140, 196]
+    bounds: [1194, 278, 8, 8]
+    shapeName: ellipse
+    fill: {type: solid, color: "$amber"}
+
+  - elementId: mbp-lit-screen
+    elementType: shape
+    bounds: [700, 212, 176, 116]
     shapeName: roundRect
     adjustments: [8000]
-    rotation: -7
     fill:
       type: gradient
       gradientType: linear
@@ -80,18 +98,28 @@ elements:
 
   - elementId: play-tri
     elementType: shape
-    bounds: [776, 234, 56, 56]
+    bounds: [762, 246, 52, 52]
     shapeName: custom
     viewBox: [100, 100]
     path: "M20,8 L92,50 L20,92 Z"
-    rotation: -7
     fill: {type: solid, color: "#0D1426"}
 
-  - elementId: mac-slab
+  - elementId: mem-caption
+    elementType: text
+    bounds: [806, 300, 60, 20]
+    content:
+      fontSize: 13
+      fontFamily: Archivo Black
+      color: "#0D1426"
+      wrap: false
+      align: [right, middle]
+      text: 128GB
+
+  - elementId: mbp-lit-base
     elementType: shape
-    bounds: [716, 386, 408, 46]
+    bounds: [688, 332, 200, 12]
     shapeName: roundRect
-    adjustments: [28000]
+    adjustments: [50000]
     fill:
       type: gradient
       gradientType: linear
@@ -100,40 +128,15 @@ elements:
         - {position: 0, color: "#3A4152"}
         - {position: 1, color: "#20273A"}
 
-  - elementId: mac-chip
+  - elementId: desk-rule
     elementType: shape
-    bounds: [898, 396, 26, 26]
-    shapeName: roundRect
-    adjustments: [18000]
-    fill: {type: solid, color: "#141B2E"}
-    border: {style: solid, width: 2, color: "$amber"}
-
-  - elementId: mac-chip-m
-    elementType: text
-    bounds: [898, 396, 26, 26]
-    content:
-      fontSize: 15
-      fontFamily: Archivo Black
-      color: "$amber"
-      wrap: false
-      align: [center, middle]
-      text: M
-
-  - elementId: mac-led
-    elementType: shape
-    bounds: [1096, 405, 9, 9]
-    shapeName: ellipse
-    fill: {type: solid, color: "$amber"}
-
-  - elementId: timeline-rule
-    elementType: shape
-    bounds: [716, 462, 408, 2]
+    bounds: [688, 402, 480, 2]
     shapeName: rect
     fill: {type: solid, color: "$dim"}
 
   - elementId: timeline-playhead
     elementType: shape
-    bounds: [790, 456, 13, 13]
+    bounds: [760, 396, 13, 13]
     shapeName: rect
     rotation: 45
     fill: {type: solid, color: "$amber"}
