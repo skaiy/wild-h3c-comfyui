@@ -1,0 +1,24 @@
+name: Publish to ComfyUI Registry
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "pyproject.toml"
+
+jobs:
+  publish-node:
+    name: Publish Custom Node to registry
+    runs-on: ubuntu-latest
+    # Only run once PublisherId is filled in and REGISTRY_ACCESS_TOKEN is set.
+    if: vars.REGISTRY_PUBLISH_ENABLED == 'true'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Publish Custom Node
+        uses: Comfy-Org/publish-node-action@main
+        with:
+          ## Personal access token from registry.comfy.org, stored as the
+          ## REGISTRY_ACCESS_TOKEN repository secret. See README.md.
+          personal_token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
