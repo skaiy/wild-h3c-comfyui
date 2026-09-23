@@ -1,7 +1,7 @@
 [project]
 name = "wild-h3c"
 description = "MiniMax H3 video generation on Apple Silicon, powered by the h3.c Metal engine."
-version = "0.1.0"
+version = "0.1.1"
 license = { file = "LICENSE" }
 dependencies = []
 classifiers = [
