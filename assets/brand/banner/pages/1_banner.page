@@ -48,7 +48,7 @@ elements:
 
   - elementId: frame-3
     elementType: shape
-    bounds: [988, 188, 140, 196]
+    bounds: [988, 196, 140, 196]
     shapeName: roundRect
     adjustments: [8000]
     rotation: 4
@@ -57,7 +57,7 @@ elements:
 
   - elementId: frame-2
     elementType: shape
-    bounds: [862, 172, 140, 196]
+    bounds: [862, 180, 140, 196]
     shapeName: roundRect
     adjustments: [8000]
     rotation: -2
@@ -66,7 +66,7 @@ elements:
 
   - elementId: frame-1
     elementType: shape
-    bounds: [730, 158, 140, 196]
+    bounds: [730, 166, 140, 196]
     shapeName: roundRect
     adjustments: [8000]
     rotation: -7
@@ -80,22 +80,60 @@ elements:
 
   - elementId: play-tri
     elementType: shape
-    bounds: [776, 226, 56, 56]
+    bounds: [776, 234, 56, 56]
     shapeName: custom
     viewBox: [100, 100]
     path: "M20,8 L92,50 L20,92 Z"
     rotation: -7
     fill: {type: solid, color: "#0D1426"}
 
+  - elementId: mac-slab
+    elementType: shape
+    bounds: [716, 386, 408, 46]
+    shapeName: roundRect
+    adjustments: [28000]
+    fill:
+      type: gradient
+      gradientType: linear
+      angle: 90
+      stops:
+        - {position: 0, color: "#3A4152"}
+        - {position: 1, color: "#20273A"}
+
+  - elementId: mac-chip
+    elementType: shape
+    bounds: [898, 396, 26, 26]
+    shapeName: roundRect
+    adjustments: [18000]
+    fill: {type: solid, color: "#141B2E"}
+    border: {style: solid, width: 2, color: "$amber"}
+
+  - elementId: mac-chip-m
+    elementType: text
+    bounds: [898, 396, 26, 26]
+    content:
+      fontSize: 15
+      fontFamily: Archivo Black
+      color: "$amber"
+      wrap: false
+      align: [center, middle]
+      text: M
+
+  - elementId: mac-led
+    elementType: shape
+    bounds: [1096, 405, 9, 9]
+    shapeName: ellipse
+    fill: {type: solid, color: "$amber"}
+
   - elementId: timeline-rule
     elementType: shape
-    bounds: [720, 434, 420, 2]
+    bounds: [716, 462, 408, 2]
     shapeName: rect
     fill: {type: solid, color: "$dim"}
 
   - elementId: timeline-playhead
     elementType: shape
-    bounds: [792, 428, 13, 13]
+    bounds: [790, 456, 13, 13]
     shapeName: rect
     rotation: 45
     fill: {type: solid, color: "$amber"}
