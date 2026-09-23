@@ -3,6 +3,8 @@
 __pycache__/
 *.pyc
 tests/
+conftest.py
+pytest.ini
 *.mp4
 *.png
 .DS_Store

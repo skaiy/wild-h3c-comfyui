@@ -65,21 +65,65 @@ make -j8
 This produces the `./h3` executable. Keep the whole `h3.c` directory — the
 binary locates `h3_shaders.metal` relative to its own location at runtime.
 
-## Step 2 — Download the model
+## Step 2 — Get the model
 
-The plugin does not ship or download the model. Get the checkpoints from
-Hugging Face: [MiniMaxAI/MiniMax-H3](https://huggingface.co/MiniMaxAI/MiniMax-H3).
+The plugin does not ship or download the model. There are two paths,
+depending on whether you already have the MiniMax-H3 weights on disk.
 
-Two self-contained checkpoints (~268 GB total):
+### Path A — You already have the weights
 
-| Checkpoint | Purpose |
-|---|---|
-| **FL2VA** | Text-to-video, plus first/last-frame anchoring |
-| **Ref2VA** | Reference-conditioned generation: up to 9 images + 3 videos + 3 audio clips |
+For example from an earlier h3.c setup. Just point the plugin at the existing
+directory — either `model_dir` in `config.json` or the per-node override
+(see Step 3). The directory layout h3 expects:
+
+```
+MiniMax-H3/
+├── model_index.json
+├── FL2VA/      # required: text-to-video + first/last-frame anchoring
+│   ├── tokenizer/  text_encoder/  processor/
+│   ├── transformer/  video_vae/  audio_vae/
+│   └── model_index.json
+└── Ref2VA/     # only needed for the Reference to Video node
+    └── (same subfolders)
+```
+
+Each checkpoint is ~134 GB on disk; **FL2VA alone is enough** if you only use
+the Text to Video node.
+
+To verify a directory before configuring the plugin, run h3's header-only
+inventory check (seconds, no weights loaded):
 
 ```bash
-# example: huggingface-cli download MiniMaxAI/MiniMax-H3 --local-dir <path-to>/MiniMax-H3
+cd <path-to>/h3.c
+./h3 --info -d <path-to>/MiniMax-H3
 ```
+
+If it prints the checkpoint inventory (Qwen3-VL encoder, FL2VA DiT, video VAE,
+audio VAE, …) without errors, the directory is good to use.
+
+### Path B — Download the weights
+
+The checkpoints live on Hugging Face:
+[MiniMaxAI/MiniMax-H3](https://huggingface.co/MiniMaxAI/MiniMax-H3)
+(~268 GB total; grab FL2VA only if you don't need reference conditioning):
+
+```bash
+# everything:
+huggingface-cli download MiniMaxAI/MiniMax-H3 --local-dir <path-to>/MiniMax-H3
+
+# FL2VA only (~134 GB):
+huggingface-cli download MiniMaxAI/MiniMax-H3 --include "FL2VA/*" "model_index.json" \
+    --local-dir <path-to>/MiniMax-H3
+```
+
+If Hugging Face is unreachable from your network, the weights are also
+mirrored on ModelScope (`MiniMax/MiniMax-H3`), and `huggingface-cli` works
+with mirrors via `HF_ENDPOINT` (e.g. `HF_ENDPOINT=https://hf-mirror.com`).
+Some h3.c checkouts also ship a resumable helper, `download-h3.sh`
+(`./download-h3.sh <file-list> <target-dir> [jobs]`, curl + hf-mirror with
+retries), which does the same job.
+
+Either way, verify the result with `./h3 --info -d <dir>` as in Path A.
 
 > ### ⚠️ Model license — read before downloading
 >
@@ -100,7 +144,7 @@ The plugin needs to know where the `h3` binary and the model directory live.
 Two ways:
 
 **Option A — `config.json`** (recommended): edit `config.json` in the plugin
-folder:
+folder (the repo also ships `config.example.json` with a filled-in example):
 
 ```json
 {
@@ -108,6 +152,13 @@ folder:
   "model_dir": "<path-to>/h3.c/MiniMax-H3"
 }
 ```
+
+- `h3_binary` — path to the `h3` executable you built in Step 1.
+- `model_dir` — path to the MiniMax-H3 directory from Step 2 (the folder that
+  contains `FL2VA/` etc., not the `FL2VA` folder itself).
+
+JSON has no comments, so the field documentation lives here; keep both files
+valid JSON.
 
 **Option B — per-node override**: every node has advanced inputs
 `binary_path` / `model_dir`. Leave them empty to use `config.json`; fill them
@@ -212,6 +263,35 @@ time, you can support development:
 "Wild H3C" is an independent community project and is not affiliated with or
 endorsed by MiniMax. "MiniMax" and "H3" are referenced here only to describe
 compatibility.
+
+## Development
+
+The test suite lives in `tests/` (excluded from the Registry package via
+`.comfyignore`). Run it with ComfyUI's own Python — no extra dependencies
+beyond `pytest`:
+
+```bash
+# one-time:
+/path/to/ComfyUI/.venv/bin/python -m pip install pytest
+
+# from the repo root:
+/path/to/ComfyUI/.venv/bin/python -m pytest
+```
+
+- Unit tests (preflight rules, command building, config resolution, progress
+  parsing, cancel semantics) are pure stdlib + pytest and finish in seconds.
+- Schema/loading tests import the plugin against a real ComfyUI checkout.
+  They default to a hard-coded local path; point `COMFYUI_ROOT` at your
+  ComfyUI root to override (tests skip cleanly if none is found):
+
+  ```bash
+  COMFYUI_ROOT=/path/to/ComfyUI /path/to/ComfyUI/.venv/bin/python -m pytest
+  ```
+
+- `tests/manual_e2e.py` is a manual smoke test that runs one real minimal
+  generation (512×512, 0.25 s, 4 steps) through the Text to Video node. It is
+  not collected by pytest and requires a working h3 binary + model; see the
+  header comment in the file.
 
 ## Publishing (for the maintainer)
 

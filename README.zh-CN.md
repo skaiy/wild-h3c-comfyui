@@ -57,21 +57,62 @@ make -j8
 产出 `./h3` 可执行文件。整个 `h3.c` 目录要保留——二进制运行时会在自身所在
 目录定位 `h3_shaders.metal`。
 
-## 第二步 —— 下载模型
+## 第二步 —— 获取模型
 
-插件不分发、不代下模型。checkpoint 在 Hugging Face：
-[MiniMaxAI/MiniMax-H3](https://huggingface.co/MiniMaxAI/MiniMax-H3)。
+插件不分发、不代下模型。按你是否已经有 MiniMax-H3 权重，分两条路径。
 
-两套自包含 checkpoint（合计约 268 GB）：
+### 路径 A —— 本地已有权重
 
-| Checkpoint | 用途 |
-|---|---|
-| **FL2VA** | 文生视频 + 首尾帧锚定 |
-| **Ref2VA** | 参考生成：最多 9 图 + 3 视频 + 3 音频 |
+比如之前玩 h3.c 时已经下载过。直接把插件指过去——`config.json` 里的
+`model_dir`，或节点上的同名覆盖输入（见第三步）。h3 要求的目录结构：
+
+```
+MiniMax-H3/
+├── model_index.json
+├── FL2VA/      # 必需：文生视频 + 首尾帧锚定
+│   ├── tokenizer/  text_encoder/  processor/
+│   ├── transformer/  video_vae/  audio_vae/
+│   └── model_index.json
+└── Ref2VA/     # 仅 Reference to Video 节点需要
+    └── （子目录同上）
+```
+
+每套 checkpoint 约 134 GB；只用文生视频的话**有 FL2VA 就够了**。
+
+配置前可以先用 h3 自带的只读校验验证目录（秒级，只读文件头、不加载
+权重）：
 
 ```bash
-# 示例：huggingface-cli download MiniMaxAI/MiniMax-H3 --local-dir <path-to>/MiniMax-H3
+cd <path-to>/h3.c
+./h3 --info -d <path-to>/MiniMax-H3
 ```
+
+能正常打印 checkpoint 清单（Qwen3-VL encoder、FL2VA DiT、video VAE、
+audio VAE……）就说明目录可用。
+
+### 路径 B —— 新下载
+
+checkpoint 在 Hugging Face：
+[MiniMaxAI/MiniMax-H3](https://huggingface.co/MiniMaxAI/MiniMax-H3)
+（合计约 268 GB；不需要参考生成功能的话可以只下 FL2VA）：
+
+```bash
+# 全量：
+huggingface-cli download MiniMaxAI/MiniMax-H3 --local-dir <path-to>/MiniMax-H3
+
+# 只下 FL2VA（约 134 GB）：
+huggingface-cli download MiniMaxAI/MiniMax-H3 --include "FL2VA/*" "model_index.json" \
+    --local-dir <path-to>/MiniMax-H3
+```
+
+如果你的网络访问 Hugging Face 不便：权重在 ModelScope 上也有镜像
+（`MiniMax/MiniMax-H3`）；`huggingface-cli` 也支持通过 `HF_ENDPOINT`
+走镜像（如 `HF_ENDPOINT=https://hf-mirror.com`）。部分 h3.c 检出还自带
+支持断点续传的辅助脚本 `download-h3.sh`（用法 `./download-h3.sh
+<文件列表> <目标目录> [并发数]`，基于 curl + hf-mirror，自动重试），
+效果相同。
+
+无论哪条路，下完都用路径 A 里的 `./h3 --info -d <目录>` 验证一遍。
 
 > ### ⚠️ 模型许可证 —— 下载前必读
 >
@@ -87,7 +128,8 @@ make -j8
 
 插件需要知道 `h3` 二进制和模型目录在哪。两种方式：
 
-**方式 A —— `config.json`**（推荐）：编辑插件目录下的 `config.json`：
+**方式 A —— `config.json`**（推荐）：编辑插件目录下的 `config.json`
+（仓库里另附 `config.example.json`，是填好的示例）：
 
 ```json
 {
@@ -95,6 +137,12 @@ make -j8
   "model_dir": "<path-to>/h3.c/MiniMax-H3"
 }
 ```
+
+- `h3_binary` —— 第一步编译出的 `h3` 可执行文件路径。
+- `model_dir` —— 第二步的 MiniMax-H3 目录（包含 `FL2VA/` 等子目录的那层，
+  不是 `FL2VA` 本身）。
+
+JSON 不支持注释，字段说明就写在这里；两个文件都请保持合法 JSON。
 
 **方式 B —— 节点级覆盖**：每个节点都有 advanced 输入 `binary_path` /
 `model_dir`。留空用 `config.json`，填了则按工作流覆盖。
@@ -189,6 +237,33 @@ Wild H3C 免费开源（MIT）。如果它帮你省了 API 账单或工作室时
 
 "Wild H3C" 是独立社区项目，与 MiniMax 无隶属或背书关系。文中提及
 "MiniMax"、"H3" 仅为说明兼容性。
+
+## 开发
+
+测试套件在 `tests/`（已通过 `.comfyignore` 排除，不会打进 Registry 包）。
+用 ComfyUI 自己的 Python 跑，除 `pytest` 外无额外依赖：
+
+```bash
+# 一次性安装：
+/path/to/ComfyUI/.venv/bin/python -m pip install pytest
+
+# 在仓库根目录：
+/path/to/ComfyUI/.venv/bin/python -m pytest
+```
+
+- 单元测试（预检规则、命令拼接、配置解析、进度解析、取消语义）只依赖
+  标准库 + pytest，秒级跑完。
+- schema/加载测试会对照真实 ComfyUI 目录加载插件，默认写死了本机路径；
+  用 `COMFYUI_ROOT` 环境变量指向你的 ComfyUI 根目录覆盖（找不到时这些
+  测试会自动 skip）：
+
+  ```bash
+  COMFYUI_ROOT=/path/to/ComfyUI /path/to/ComfyUI/.venv/bin/python -m pytest
+  ```
+
+- `tests/manual_e2e.py` 是手动冒烟脚本：用最小参数（512×512、0.25 秒、
+  4 步）真跑一次文生视频。不被 pytest 收集，需要本机有可用的 h3 二进制
+  和模型，详见文件头注释。
 
 ## 发布流程（维护者用）
 
