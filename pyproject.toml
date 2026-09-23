@@ -1,0 +1,20 @@
+[project]
+name = "wild-h3c"
+description = "MiniMax H3 video generation on Apple Silicon, powered by the h3.c Metal engine."
+version = "0.1.0"
+license = { file = "LICENSE" }
+dependencies = []
+classifiers = [
+    "Operating System :: MacOS",
+    "Environment :: GPU :: Apple Metal",
+]
+
+[project.urls]
+Repository = "https://github.com/skaiy/wild-h3c-comfyui"
+
+[tool.comfy]
+# TODO: replace with your PublisherId from registry.comfy.org (shown after @ on
+# your profile page). PublisherId is globally unique and cannot be changed later.
+PublisherId = "YOUR_PUBLISHER_ID"
+DisplayName = "Wild H3C — MiniMax H3 for Apple Silicon"
+Icon = ""
