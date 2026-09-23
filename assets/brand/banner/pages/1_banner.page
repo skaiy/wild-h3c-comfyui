@@ -5,7 +5,7 @@ background:
 elements:
   - elementId: wordmark
     elementType: text
-    bounds: [80, 150, 660, 120]
+    bounds: [80, 150, 640, 120]
     content:
       fontSize: 92
       fontFamily: Archivo Black
@@ -17,7 +17,7 @@ elements:
 
   - elementId: tagline
     elementType: text
-    bounds: [82, 292, 620, 74]
+    bounds: [82, 292, 600, 74]
     content:
       fontSize: 27
       color: "$sub"
@@ -29,7 +29,7 @@ elements:
 
   - elementId: facts
     elementType: text
-    bounds: [82, 408, 620, 28]
+    bounds: [82, 408, 600, 28]
     content:
       fontSize: 18
       color: "$mute"
@@ -41,16 +41,16 @@ elements:
 
   - elementId: frame-3
     elementType: shape
-    bounds: [1045, 185, 150, 210]
+    bounds: [918, 190, 130, 182]
     shapeName: roundRect
     adjustments: [8000]
-    rotation: 5
+    rotation: 4
     fill: {type: solid, color: "$frame"}
     border: {style: solid, width: 2, color: "$frameedge"}
 
   - elementId: frame-2
     elementType: shape
-    bounds: [912, 168, 150, 210]
+    bounds: [800, 176, 130, 182]
     shapeName: roundRect
     adjustments: [8000]
     rotation: -2
@@ -59,7 +59,7 @@ elements:
 
   - elementId: frame-1
     elementType: shape
-    bounds: [780, 152, 150, 210]
+    bounds: [686, 162, 130, 182]
     shapeName: roundRect
     adjustments: [8000]
     rotation: -7
@@ -73,22 +73,29 @@ elements:
 
   - elementId: play-tri
     elementType: shape
-    bounds: [831, 227, 62, 62]
+    bounds: [728, 224, 54, 54]
     shapeName: custom
     viewBox: [100, 100]
     path: "M20,8 L92,50 L20,92 Z"
     rotation: -7
-    fill: {type: solid, color: "#0E0F11"}
+    fill: {type: solid, color: "#0D1426"}
 
   - elementId: timeline-rule
     elementType: shape
-    bounds: [770, 448, 430, 2]
+    bounds: [676, 428, 382, 2]
     shapeName: rect
     fill: {type: solid, color: "$dim"}
 
   - elementId: timeline-playhead
     elementType: shape
-    bounds: [846, 442, 14, 14]
+    bounds: [744, 422, 13, 13]
     shapeName: rect
     rotation: 45
     fill: {type: solid, color: "$amber"}
+
+  - elementId: lantern
+    elementType: image
+    bounds: [1054, 52, 188, 444]
+    src: "media/lantern.png"
+    fit: {mode: contain}
+    crop: {left: 0.24, right: 0.24, top: 0.02, bottom: 0.04}
