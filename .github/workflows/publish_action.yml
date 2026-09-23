@@ -21,4 +21,4 @@ jobs:
         with:
           ## Personal access token from registry.comfy.org, stored as the
           ## REGISTRY_ACCESS_TOKEN repository secret. See README.md.
-          personal_token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+          personal_access_token: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
