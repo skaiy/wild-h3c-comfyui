@@ -8,3 +8,4 @@ pytest.ini
 *.mp4
 *.png
 .DS_Store
+assets/
