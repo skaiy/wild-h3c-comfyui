@@ -1,0 +1,15 @@
+version: v2
+title: Wild H3C — Registry Icon
+size: [400, 400]
+customFonts:
+  - family: Archivo Black
+    src: "https://fonts.googleapis.com/css2?family=Archivo+Black"
+theme:
+  colors:
+    bg: "#0E0F11"
+    paper: "#F4F1E8"
+    amber: "#F2A33C"
+    dim: "#2A2C30"
+    mute: "#6B6F76"
+pages:
+  - pages/1_icon.page
