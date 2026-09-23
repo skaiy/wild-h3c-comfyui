@@ -1,0 +1,18 @@
+version: v2
+title: Wild H3C — Registry Banner 21:9
+size: [1260, 540]
+customFonts:
+  - family: Archivo Black
+    src: "https://fonts.googleapis.com/css2?family=Archivo+Black"
+theme:
+  colors:
+    bg: "#0E0F11"
+    paper: "#F4F1E8"
+    amber: "#F2A33C"
+    dim: "#2A2C30"
+    frame: "#17181B"
+    frameedge: "#2E3136"
+    mute: "#8A8F98"
+    sub: "#B9BDC4"
+pages:
+  - pages/1_banner.page
