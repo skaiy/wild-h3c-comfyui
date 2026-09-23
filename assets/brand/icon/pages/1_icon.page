@@ -1,0 +1,83 @@
+pageType: cover
+background:
+  type: solid
+  color: "$bg"
+elements:
+  - elementId: brand-tag
+    elementType: text
+    bounds: [0, 44, 400, 24]
+    content:
+      fontSize: 15
+      color: "$mute"
+      letterSpacing: 10
+      wrap: false
+      align: [center, middle]
+      text: W I L D
+
+  - elementId: mark-h3
+    elementType: text
+    bounds: [0, 96, 400, 210]
+    content:
+      fontSize: 190
+      fontFamily: Archivo Black
+      color: "$paper"
+      wrap: false
+      align: [center, middle]
+      text: |
+        <p>H<span style="color:$amber">3</span></p>
+
+  - elementId: perf-1
+    elementType: shape
+    bounds: [63, 330, 14, 14]
+    shapeName: rect
+    fill: {type: solid, color: "$amber"}
+  - elementId: perf-2
+    elementType: shape
+    bounds: [89, 330, 14, 14]
+    shapeName: rect
+    fill: {type: solid, color: "$dim"}
+  - elementId: perf-3
+    elementType: shape
+    bounds: [115, 330, 14, 14]
+    shapeName: rect
+    fill: {type: solid, color: "$dim"}
+  - elementId: perf-4
+    elementType: shape
+    bounds: [141, 330, 14, 14]
+    shapeName: rect
+    fill: {type: solid, color: "$dim"}
+  - elementId: perf-5
+    elementType: shape
+    bounds: [167, 330, 14, 14]
+    shapeName: rect
+    fill: {type: solid, color: "$dim"}
+  - elementId: perf-6
+    elementType: shape
+    bounds: [193, 330, 14, 14]
+    shapeName: rect
+    fill: {type: solid, color: "$dim"}
+  - elementId: perf-7
+    elementType: shape
+    bounds: [219, 330, 14, 14]
+    shapeName: rect
+    fill: {type: solid, color: "$dim"}
+  - elementId: perf-8
+    elementType: shape
+    bounds: [245, 330, 14, 14]
+    shapeName: rect
+    fill: {type: solid, color: "$dim"}
+  - elementId: perf-9
+    elementType: shape
+    bounds: [271, 330, 14, 14]
+    shapeName: rect
+    fill: {type: solid, color: "$dim"}
+  - elementId: perf-10
+    elementType: shape
+    bounds: [297, 330, 14, 14]
+    shapeName: rect
+    fill: {type: solid, color: "$dim"}
+  - elementId: perf-11
+    elementType: shape
+    bounds: [323, 330, 14, 14]
+    shapeName: rect
+    fill: {type: solid, color: "$dim"}
