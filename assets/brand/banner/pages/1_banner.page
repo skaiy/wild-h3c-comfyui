@@ -3,11 +3,18 @@ background:
   type: solid
   color: "$bg"
 elements:
+  - elementId: lantern
+    elementType: image
+    bounds: [80, 130, 100, 166]
+    src: "media/lantern.png"
+    fit: {mode: contain}
+    crop: {left: 0.24, right: 0.24, top: 0.02, bottom: 0.04}
+
   - elementId: wordmark
     elementType: text
-    bounds: [80, 150, 640, 120]
+    bounds: [200, 152, 560, 118]
     content:
-      fontSize: 92
+      fontSize: 88
       fontFamily: Archivo Black
       color: "$paper"
       wrap: false
@@ -17,7 +24,7 @@ elements:
 
   - elementId: tagline
     elementType: text
-    bounds: [82, 292, 600, 74]
+    bounds: [82, 312, 600, 72]
     content:
       fontSize: 27
       color: "$sub"
@@ -29,7 +36,7 @@ elements:
 
   - elementId: facts
     elementType: text
-    bounds: [82, 408, 600, 28]
+    bounds: [82, 420, 600, 28]
     content:
       fontSize: 18
       color: "$mute"
@@ -41,7 +48,7 @@ elements:
 
   - elementId: frame-3
     elementType: shape
-    bounds: [918, 190, 130, 182]
+    bounds: [988, 188, 140, 196]
     shapeName: roundRect
     adjustments: [8000]
     rotation: 4
@@ -50,7 +57,7 @@ elements:
 
   - elementId: frame-2
     elementType: shape
-    bounds: [800, 176, 130, 182]
+    bounds: [862, 172, 140, 196]
     shapeName: roundRect
     adjustments: [8000]
     rotation: -2
@@ -59,7 +66,7 @@ elements:
 
   - elementId: frame-1
     elementType: shape
-    bounds: [686, 162, 130, 182]
+    bounds: [730, 158, 140, 196]
     shapeName: roundRect
     adjustments: [8000]
     rotation: -7
@@ -73,7 +80,7 @@ elements:
 
   - elementId: play-tri
     elementType: shape
-    bounds: [728, 224, 54, 54]
+    bounds: [776, 226, 56, 56]
     shapeName: custom
     viewBox: [100, 100]
     path: "M20,8 L92,50 L20,92 Z"
@@ -82,20 +89,13 @@ elements:
 
   - elementId: timeline-rule
     elementType: shape
-    bounds: [676, 428, 382, 2]
+    bounds: [720, 434, 420, 2]
     shapeName: rect
     fill: {type: solid, color: "$dim"}
 
   - elementId: timeline-playhead
     elementType: shape
-    bounds: [744, 422, 13, 13]
+    bounds: [792, 428, 13, 13]
     shapeName: rect
     rotation: 45
     fill: {type: solid, color: "$amber"}
-
-  - elementId: lantern
-    elementType: image
-    bounds: [1054, 52, 188, 444]
-    src: "media/lantern.png"
-    fit: {mode: contain}
-    crop: {left: 0.24, right: 0.24, top: 0.02, bottom: 0.04}
