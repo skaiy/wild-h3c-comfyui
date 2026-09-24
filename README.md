@@ -1,9 +1,14 @@
+![Wild H3C banner](assets/banner.png)
+
 # Wild H3C — MiniMax H3 for Apple Silicon
 
-Run **MiniMax H3** video generation **locally on your Mac**, powered by the
-[h3.c](https://github.com/antirez/h3.c) Metal engine — the native C/Metal port
-of MiniMax H3 for Apple Silicon by Salvatore Sanfilippo (antirez, author of
-Redis).
+<p>
+  <img src="assets/icon.png" width="24" align="top" alt="Wild H3C icon">
+  Run <strong>MiniMax H3</strong> video generation <strong>locally on your Mac</strong>, powered by the
+  <a href="https://github.com/antirez/h3.c">h3.c</a> Metal engine — the native C/Metal port
+  of MiniMax H3 for Apple Silicon by Salvatore Sanfilippo (antirez, author of
+  Redis).
+</p>
 
 > **[中文版 README](README.zh-CN.md)**
 
