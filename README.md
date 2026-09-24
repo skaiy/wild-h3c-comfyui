@@ -255,8 +255,8 @@ features that are not in the open checkpoints.
 Wild H3C is free and open source (MIT). If it saves you API bills or studio
 time, you can support development:
 
-- **GitHub Sponsors**: <!-- TODO: enable GitHub Sponsors, then link --> `https://github.com/sponsors/skaiy` *(placeholder — coming soon)*
-- **爱发电 (Afdian)**: <!-- TODO: create Afdian page, then link --> *(placeholder — coming soon)*
+- **爱发电 (Afdian)**: [afdian.com/a/kaiyAI](https://afdian.com/a/kaiyAI) — 支持微信/支付宝
+- Sharing helps even more: a star, a repost on [X](https://x.com), or telling a fellow Mac user goes a long way at this stage.
 
 ## Acknowledgements
 
