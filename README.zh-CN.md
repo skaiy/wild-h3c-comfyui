@@ -227,8 +227,8 @@ checkpoint 里没有的能力，也仍然只有官方节点能提供。
 Wild H3C 免费开源（MIT）。如果它帮你省了 API 账单或工作室时间，可以赞助
 开发：
 
-- **GitHub Sponsors**：`https://github.com/sponsors/skaiy`（占位——即将开通）
-- **爱发电**：（占位——即将开通）
+- **爱发电**：[afdian.com/a/kaiyAI](https://afdian.com/a/kaiyAI)（微信/支付宝）
+- 现阶段转发比赞助更值钱：一个 star、一次 X 转发、或者推荐给身边的 Mac 玩家，都是很大的支持。
 
 ## 致谢
 
