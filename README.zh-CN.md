@@ -1,3 +1,5 @@
+![Wild H3C banner](assets/banner.png)
+
 # Wild H3C — Apple Silicon 上的 MiniMax H3
 
 在你的 Mac 上**本地运行 MiniMax H3 视频生成**，由
